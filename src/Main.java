@@ -1,14 +1,18 @@
 import java.sql.*;
+import io.github.cdimascio.dotenv.*;
 
 
 public class Main
 {
     public static void main(String[] args)
     {
+        // Load the .env file
+        Dotenv dotenv = Dotenv.configure().load();
+
         // Database connection details
-        String url = "jdbc:mysql://ifa3z.h.filess.io:3307/StoreManagementSystem_statement";
-        String user = "StoreManagementSystem_statement";
-        String password = "9d05a4dffc9ff707e2c31864cb098c6eb23782a0";
+        String url = dotenv.get("DB_URL");
+        String user = dotenv.get("DB_USER");
+        String password = dotenv.get("DB_PASSWORD");
 
         String selectSQL = "SELECT * FROM users";
 
