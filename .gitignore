@@ -27,3 +27,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Env ###
+*.env
+*.env.example
+*.env.local
+*.env.staging
