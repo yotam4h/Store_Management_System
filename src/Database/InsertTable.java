@@ -1,6 +1,6 @@
 package Database;
 
-import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.*;
 
 import java.sql.*;
 
@@ -22,7 +22,7 @@ public class InsertTable {
 
             // Use PreparedStatement for the insert operation
             String insertSQL = "INSERT INTO users (name, email) VALUES (?, ?)";
-            String selectSQL = "SELECT * FROM users";
+
             try (PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
                 pstmt.setString(1, "John Doe");
                 pstmt.setString(2, "john.doe@example.com");

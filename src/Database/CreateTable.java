@@ -1,6 +1,6 @@
 package Database;
 
-import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.*;
 
 import java.sql.*;
 

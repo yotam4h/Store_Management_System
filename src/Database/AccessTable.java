@@ -1,12 +1,14 @@
 package Database;
 
 import java.sql.*;
-import io.github.cdimascio.dotenv.*;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class AccessTable {
     public static void main(String[] args) {
         // Load the .env file
         Dotenv dotenv = Dotenv.configure().load();
+
+        System.out.println(dotenv.get("DB_URL"));
 
         // Database connection details
         String url = dotenv.get("DB_URL");
