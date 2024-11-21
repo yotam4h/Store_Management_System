@@ -1,5 +1,9 @@
 import java.sql.Connection;
+
+import com.storemanagement.admin.AdminService;
 import com.storemanagement.utils.DatabaseConnection;
+import com.storemanagement.admin.Employee;
+import com.storemanagement.utils.Constants.*;
 
 public class Main
 {
@@ -15,7 +19,7 @@ public class Main
                 System.out.println("Database connected successfully!");
 
                 // Execute a query
-                String query = "SELECT * FROM users";
+                String query = "SELECT * FROM employees";
                 dbConnection.executeQuery(query);
             }
         } catch (Exception e) {

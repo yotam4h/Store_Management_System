@@ -1,5 +1,6 @@
 package com.storemanagement.admin;
 
+import com.storemanagement.utils.Constants;
 import com.storemanagement.utils.Constants.EmployeeRole;
 
 public class Employee
@@ -10,12 +11,12 @@ public class Employee
     EmployeeRole employeeRole;
     int branchId;
 
-    public Employee(int id, String firstName, String lastName, EmployeeRole employeeRole, int branchId)
+    public Employee(int id, String firstName, String lastName, String employeeRole, int branchId)
     {
         setId(id);
         setFirstName(firstName);
         setLastName(lastName);
-        setRole(employeeRole);
+        setRole(EmployeeRole.valueOf(employeeRole));
         setBranchId(branchId);
     }
 

@@ -926,7 +926,7 @@ StoreManagementSystem_statement|schema||StoreManagementSystem_statement||UPDATE|
     </collation>
     <schema id="288" parent="1" name="StoreManagementSystem_statement">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-11-21.10:38:09</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-11-21.12:28:15</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">
@@ -936,45 +936,85 @@ StoreManagementSystem_statement|schema||StoreManagementSystem_statement||UPDATE|
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="291" parent="1" name="StoreManagementSystem_statement"/>
-    <table id="292" parent="288" name="users">
+    <table id="292" parent="288" name="employees">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <column id="293" parent="292" name="id">
+    <table id="293" parent="288" name="users">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <column id="294" parent="292" name="id">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="294" parent="292" name="name">
+    <column id="295" parent="292" name="firstName">
+      <NotNull>1</NotNull>
       <Position>2</Position>
-      <StoredType>varchar(50)|0s</StoredType>
+      <StoredType>char(25)|0s</StoredType>
     </column>
-    <column id="295" parent="292" name="email">
+    <column id="296" parent="292" name="lastName">
+      <NotNull>1</NotNull>
       <Position>3</Position>
-      <StoredType>varchar(100)|0s</StoredType>
+      <StoredType>char(25)|0s</StoredType>
     </column>
-    <column id="296" parent="292" name="created_at">
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    <column id="297" parent="292" name="role">
+      <NotNull>1</NotNull>
       <Position>4</Position>
-      <StoredType>timestamp|0s</StoredType>
+      <StoredType>char(25)|0s</StoredType>
     </column>
-    <index id="297" parent="292" name="PRIMARY">
+    <column id="298" parent="292" name="branchId">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <index id="299" parent="292" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="298" parent="292" name="email">
-      <ColNames>email</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="299" parent="292" name="PRIMARY">
+    <key id="300" parent="292" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="300" parent="292" name="email">
+    <column id="301" parent="293" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="302" parent="293" name="name">
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="303" parent="293" name="email">
+      <Position>3</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="304" parent="293" name="created_at">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <Position>4</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <index id="305" parent="293" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="306" parent="293" name="email">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="307" parent="293" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="308" parent="293" name="email">
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
   </database-model>
