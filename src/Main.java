@@ -1,17 +1,28 @@
-import io.github.cdimascio.dotenv.Dotenv;
+import java.sql.Connection;
+import com.storemanagement.utils.DatabaseConnection;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        // System.out.println("Current Directory: " + System.getProperty("user.dir"));
+        // Get the database connection
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+        Connection connection = dbConnection.getConnection();
 
-        Dotenv dotenv = Dotenv.configure()
-                .directory("./")
-                .load();
+        // Use the connection (e.g., execute a query)
+        try {
+            if (connection != null) {
+                System.out.println("Database connected successfully!");
 
-        System.out.println("DB_URL: " + dotenv.get("DB_URL"));
-        System.out.println("DB_USER: " + dotenv.get("DB_USER"));
-        System.out.println("DB_PASSWORD: " + dotenv.get("DB_PASSWORD"));
+                // Execute a query
+                String query = "SELECT * FROM users";
+                dbConnection.executeQuery(query);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dbConnection.closeConnection(); // Optional cleanup
+        }
+
     }
 }
