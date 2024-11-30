@@ -1,60 +1,98 @@
 package com.storemanagement.admin;
 
-import com.storemanagement.utils.Constants;
+import com.storemanagement.models.Employee;
 import com.storemanagement.utils.DatabaseConnection;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import com.storemanagement.utils.Constants.EmployeeRole;
 
-import java.sql.Connection;
+import org.junit.jupiter.api.*;
+import java.sql.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AdminServiceTest
-{
-    AdminService adminService = new AdminService();
-    Employee employee = new Employee(1, "John", "Doe", Constants.EmployeeRole.ADMIN.toString(), 1);
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class AdminServiceTest {
 
-    @BeforeAll
-    static void setUp()
-    {
-        // Get the database connection
-        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-        Connection connection = dbConnection.getConnection();
+    private final AdminService adminService = new AdminService();
+
+    @BeforeEach
+    void cleanDatabase() {
+        try {
+            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+            Connection connection = dbConnection.getConnection();
+            Statement stmt = connection.createStatement();
+
+            // Clear only the Employees table for testing purposes
+            stmt.execute("DELETE FROM Employees");
+
+        } catch (SQLException e) {
+            System.out.println("Error cleaning database: " + e.getMessage());
+        }
+
     }
 
-    @AfterAll
-    static void tearDown()
-    {
-        // Close the database connection
-        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-        dbConnection.closeConnection();
+    @Test
+    void testAddEmployee() {
+        Employee employee = new Employee("John Doe", "123-4567", EmployeeRole.MANAGER, 1);
+        boolean isAdded = adminService.addEmployee(employee);
+
+        assertTrue(isAdded, "Employee should be added successfully");
+
+        // Verify in the database
+        try {
+            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+            Statement stmt = dbConnection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Employees WHERE full_name = 'John Doe'");
+
+            assertTrue(rs.next(), "Employee should exist in the database");
+            assertEquals(employee.getFullName(), rs.getString("full_name"), "Employee name should match");
+            assertEquals(employee.getId(), rs.getInt("id"), "Employee ID should match");
+
+        } catch (SQLException e) {
+            fail("Error verifying database: " + e.getMessage());
+        }
     }
 
-    @org.junit.jupiter.api.Test
-    void addEmployee()
-    {
-        adminService.addEmployee(employee);
+    @Test
+    void testListEmployees() {
+        // Add sample employees
+        adminService.addEmployee(new Employee("Alice Johnson", "555-1234", EmployeeRole.ADMIN, 1));
+        adminService.addEmployee(new Employee("Bob Smith", "555-5678", EmployeeRole.EMPLOYEE, 1));
+
+        // Fetch employees
+        List<Employee> employees = adminService.listEmployees();
+
+        assertEquals(2, employees.size(), "There should be 2 employees in the database");
+        assertEquals("Alice Johnson", employees.get(0).getFullName(), "First employee's name should match");
+        assertEquals("Bob Smith", employees.get(1).getFullName(), "Second employee's name should match");
     }
 
-    @org.junit.jupiter.api.Test
-    void removeEmployee()
-    {
-        adminService.removeEmployee(employee.getId());
-    }
+    @Test
+    void testRemoveEmployee() {
+        // Add an employee to remove
 
-    @org.junit.jupiter.api.Test
-    void getEmployees()
-    {
-        List<Employee> employees = adminService.getEmployees();
-        assertNotNull(employees);
-        System.out.println("ID\tFirstName\tLastName\tRole\tBranchID");
-        while(employees.iterator().hasNext())
-        {
-            Employee employee = employees.iterator().next();
-            assertNotNull(employee);
-            System.out.println(employee.getId() + "\t" + employee.getFirstName() + "\t\t" + employee.getLastName() + "\t\t\t" + employee.getRole() + "\t" + employee.getBranchId());
-            employees.remove(employee);
+        boolean isAdded = adminService.addEmployee(new Employee("Charlie Brown", "555-9999", EmployeeRole.MANAGER, 1));
+        assertTrue(isAdded, "Employee should be added successfully");
+
+        // Fetch the employee ID from the database
+        int employeeId = adminService.listEmployees().get(0).getId();
+        System.out.println("Employee ID: " + employeeId);
+
+        // Remove the employee
+        boolean isRemoved = adminService.removeEmployee(employeeId);
+
+        assertTrue(isRemoved, "Employee should be removed successfully");
+
+        // Verify the employee no longer exists
+        try {
+            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+            Statement stmt = dbConnection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Employees WHERE id = " + employeeId);
+
+            assertFalse(rs.next(), "Employee should not exist in the database");
+
+        } catch (SQLException e) {
+            fail("Error verifying database: " + e.getMessage());
         }
     }
 }

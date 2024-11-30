@@ -58,7 +58,7 @@ public class DatabaseConnection {
 
 
     // Execute a query
-public void executeQuery(String query) {
+    public void executeQuery(String query) {
     try (Statement stmt = connection.createStatement();
          ResultSet rs = stmt.executeQuery(query)) {
 
@@ -75,8 +75,53 @@ public void executeQuery(String query) {
         }
 
         System.out.println("Query executed successfully!");
-    } catch (SQLException e) {
+        } catch (SQLException e) {
         System.out.println("Error executing query: " + e.getMessage());
+        }
     }
-}
+
+    public void executeFile(String path) {
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.execute("RUNSCRIPT FROM '" + path + "'");
+            System.out.println("File executed successfully!");
+        } catch (SQLException e) {
+            System.out.println("Error executing file: " + e.getMessage());
+        }
+    }
+
+    public void createTables() {
+        executeFile("src/com/storemanagement/utils/create_tables.sql");
+    }
+
+    // prepare statement
+    public PreparedStatement prepareStatement(String query) throws SQLException {
+        try {
+            return connection.prepareStatement(query);
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    // prepare statement with generated keys
+    public PreparedStatement prepareStatementWithGeneratedKeys(String query) throws SQLException {
+        try {
+            return connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    // Create statement
+    public Statement createStatement() throws SQLException {
+        try {
+            return connection.createStatement();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+
+
+
 }

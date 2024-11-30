@@ -13,7 +13,7 @@ public class Constants
     {
         ADMIN,
         MANAGER,
-        EMPLOYEE
+        EMPLOYEE;
     }
 
     public enum CustomerType

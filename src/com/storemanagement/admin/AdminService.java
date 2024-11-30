@@ -1,65 +1,115 @@
 package com.storemanagement.admin;
 
 import com.storemanagement.utils.DatabaseConnection;
+import com.storemanagement.utils.Constants.EmployeeRole;
+import com.storemanagement.models.Employee;
 
+import javax.xml.crypto.Data;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.*;
 
-public class AdminService
-{
-    // TODO: Implement this method
-    public void addEmployee(Employee employee)
-    {
-        // Add employee to database
-        String query = "INSERT INTO employees (id, firstName, lastName, role, branchId) VALUES ('" +employee.getId() + "', '" + employee.getFirstName() + "', '" + employee.getLastName() + "', '" + employee.getRole() + "', " + employee.getBranchId() + ")";
+public class AdminService {
+
+    // Method to add a new employee
+    public boolean addEmployee(Employee employee) {
+
+        String query = "INSERT INTO Employees (full_name, phone_number, role, branch_id) VALUES (?, ?, ?, ?)";
         try {
             DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-            Connection connection = dbConnection.getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(query);
+            PreparedStatement stmt = dbConnection.prepareStatementWithGeneratedKeys(query);
+
+            stmt.setString(1, employee.getFullName());
+            stmt.setString(2, employee.getPhoneNumber());
+            stmt.setString(3, employee.getRole().toString());
+            stmt.setInt(4, employee.getBranchId());
+
+            int rowsAffected = stmt.executeUpdate();
+            // if employee is added successfully, update the employee object with the new ID
+             if (rowsAffected > 0) {
+                 ResultSet rs = stmt.getGeneratedKeys();
+                 if (rs.next()) {
+                     employee.setId(rs.getInt(1));
+                 }
+                 return true;
+             }
+            return false;
         } catch (SQLException e) {
-            System.out.println("Error executing query: " + e.getMessage());
+            System.out.println("Error adding employee: " + e.getMessage());
+            return false;
         }
     }
 
-    // TODO: Implement this method
-    public void removeEmployee(int employeeId)
-    {
-        // Remove employee from database
-        String query = "DELETE FROM employees WHERE id = " + employeeId;
+    // Method to remove an employee by ID
+    public boolean removeEmployee(int employeeId) {
+
+        String query = "DELETE FROM Employees WHERE id = ?";
         try {
             DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-            Connection connection = dbConnection.getConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(query);
+            PreparedStatement stmt = dbConnection.prepareStatement(query);
+
+            stmt.setInt(1, employeeId);
+
+            int rowsAffected = stmt.executeUpdate();
+
+            return rowsAffected > 0;
+
         } catch (SQLException e) {
-            System.out.println("Error executing query: " + e.getMessage());
+            System.out.println("Error removing employee: " + e.getMessage());
+            return false;
         }
     }
 
-    // TODO: Implement this method
-    List<Employee> getEmployees()
-    {
+    // Method to list all employees
+    public List<Employee> listEmployees() {
+        /*
+        String query = "SELECT * FROM Employees";
         List<Employee> employees = new ArrayList<>();
-        // Get all employees from database
-        String query = "SELECT * FROM employees";
+
         try {
-            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-            Connection connection = dbConnection.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String role = resultSet.getString("role");
-                int branchId = resultSet.getInt("branchId");
-                Employee employee = new Employee(id, firstName, lastName, role, branchId);
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                Employee employee = new Employee(
+                        rs.getInt("id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone_number"),
+                        EmployeeRole.valueOf(rs.getString("role")),
+                        rs.getInt("branch_id")
+                );
                 employees.add(employee);
             }
+
         } catch (SQLException e) {
-            System.out.println("Error executing query: " + e.getMessage());
+            System.out.println("Error fetching employees: " + e.getMessage());
+        }
+
+        return employees;
+        */
+
+        String query = "SELECT * FROM Employees";
+        List<Employee> employees = new ArrayList<>();
+
+        try {
+            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+            Statement stmt = dbConnection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                Employee employee = new Employee(
+                        rs.getInt("id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone_number"),
+                        EmployeeRole.valueOf(rs.getString("role")),
+                        rs.getInt("branch_id")
+                );
+                employees.add(employee);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error fetching employees: " + e.getMessage());
         }
 
         return employees;
