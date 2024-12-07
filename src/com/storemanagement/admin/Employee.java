@@ -1,4 +1,4 @@
-package com.storemanagement.models;
+package com.storemanagement.admin;
 
 import com.storemanagement.utils.Constants.EmployeeRole;
 

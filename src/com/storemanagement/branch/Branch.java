@@ -1,4 +1,4 @@
-package com.storemanagement.models;
+package com.storemanagement.branch;
 
 public class Branch
 {

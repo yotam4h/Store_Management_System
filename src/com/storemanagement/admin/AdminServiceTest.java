@@ -1,6 +1,5 @@
 package com.storemanagement.admin;
 
-import com.storemanagement.models.Employee;
 import com.storemanagement.utils.DatabaseConnection;
 import com.storemanagement.utils.Constants.EmployeeRole;
 
@@ -17,18 +16,13 @@ public class AdminServiceTest {
 
     @BeforeEach
     void cleanDatabase() {
-        try {
             DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-            Connection connection = dbConnection.getConnection();
-            Statement stmt = connection.createStatement();
-
-            // Clear only the Employees table for testing purposes
-            stmt.execute("DELETE FROM Employees");
-
-        } catch (SQLException e) {
-            System.out.println("Error cleaning database: " + e.getMessage());
-        }
-
+            try {
+                Statement stmt = dbConnection.createStatement();
+                stmt.execute("DELETE FROM Employees");
+            } catch (SQLException e) {
+                System.out.println("Error cleaning database: " + e.getMessage());
+            }
     }
 
     @Test

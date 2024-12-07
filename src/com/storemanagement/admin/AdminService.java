@@ -1,17 +1,15 @@
 package com.storemanagement.admin;
 
+import com.storemanagement.branch.Branch;
 import com.storemanagement.utils.DatabaseConnection;
 import com.storemanagement.utils.Constants.EmployeeRole;
-import com.storemanagement.models.*;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminService {
 
-    // Method to add a new employee
     public boolean addEmployee(Employee employee) {
 
         String query = "INSERT INTO Employees (full_name, phone_number, role, branch_id) VALUES (?, ?, ?, ?)";
@@ -40,7 +38,6 @@ public class AdminService {
         }
     }
 
-    // Method to remove an employee by ID
     public boolean removeEmployee(int employeeId) {
 
         String query = "DELETE FROM Employees WHERE id = ?";
@@ -60,34 +57,7 @@ public class AdminService {
         }
     }
 
-    // Method to list all employees
     public List<Employee> listEmployees() {
-        /*
-        String query = "SELECT * FROM Employees";
-        List<Employee> employees = new ArrayList<>();
-
-        try {
-            Connection connection = DatabaseConnection.getInstance().getConnection();
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                Employee employee = new Employee(
-                        rs.getInt("id"),
-                        rs.getString("full_name"),
-                        rs.getString("phone_number"),
-                        EmployeeRole.valueOf(rs.getString("role")),
-                        rs.getInt("branch_id")
-                );
-                employees.add(employee);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error fetching employees: " + e.getMessage());
-        }
-
-        return employees;
-        */
 
         String query = "SELECT * FROM Employees";
         List<Employee> employees = new ArrayList<>();
@@ -115,7 +85,52 @@ public class AdminService {
         return employees;
     }
 
-    // Method to add a new branch
+    public boolean updateEmployee(Employee employee) {
+        String query = "UPDATE Employees SET full_name = ?, phone_number = ?, role = ?, branch_id = ? WHERE id = ?";
+        try {
+            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+            PreparedStatement stmt = dbConnection.prepareStatement(query);
+
+            stmt.setString(1, employee.getFullName());
+            stmt.setString(2, employee.getPhoneNumber());
+            stmt.setString(3, employee.getRole().toString());
+            stmt.setInt(4, employee.getBranchId());
+            stmt.setInt(5, employee.getId());
+
+            int rowsAffected = stmt.executeUpdate();
+
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error updating employee: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public Employee getEmployeeById(int employeeId) {
+        String query = "SELECT * FROM Employees WHERE id = ?";
+        try {
+            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+            PreparedStatement stmt = dbConnection.prepareStatement(query);
+
+            stmt.setInt(1, employeeId);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Employee(
+                        rs.getInt("id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone_number"),
+                        EmployeeRole.valueOf(rs.getString("role")),
+                        rs.getInt("branch_id")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching employee: " + e.getMessage());
+        }
+        return null;
+    }
+
     public boolean addBranch(Branch branch) {
         String query = "INSERT INTO Branches (branch_name, branch_address, branch_phone) VALUES (?, ?, ?)";
         try {
@@ -142,7 +157,6 @@ public class AdminService {
         }
     }
 
-    // Method to remove a branch by ID
     public boolean removeBranch(int branchId) {
         String query = "DELETE FROM Branches WHERE branch_id = ?";
         try {
@@ -161,7 +175,6 @@ public class AdminService {
         }
     }
 
-    // Method to list all branches
     public List<Branch> listBranches() {
         String query = "SELECT * FROM Branches";
         List<Branch> branches = new ArrayList<>();

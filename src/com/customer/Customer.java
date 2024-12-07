@@ -1,5 +1,6 @@
-package com.storemanagement.sales;
+package com.customer;
 
+import com.storemanagement.sales.Sale;
 import com.storemanagement.utils.Constants.CustomerType;
 
 import java.util.List;
