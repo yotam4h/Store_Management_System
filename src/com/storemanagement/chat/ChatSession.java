@@ -10,7 +10,16 @@ public class ChatSession {
     private Timestamp startTime;
     private Timestamp endTime;
 
-    // Constructor for a new session
+    // Constructor for existing session
+    public ChatSession(int id, int fromUserId, int toUserId, Timestamp startTime, Timestamp endTime) {
+        this.id = id;
+        this.fromUserId = fromUserId;
+        this.toUserId = toUserId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    // Constructor for a new session without id (for new sessions)
     public ChatSession(int fromUserId, int toUserId, Timestamp startTime) {
         this.fromUserId = fromUserId;
         this.toUserId = toUserId;

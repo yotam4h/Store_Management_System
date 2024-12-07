@@ -19,6 +19,15 @@ public class Product
         setQuantity(quantity);
     }
 
+    // Overloaded Constructor without ID (for new products)
+    public Product(String name, Category category, double price, int quantity)
+    {
+        setName(name);
+        setCategory(category);
+        setPrice(price);
+        setQuantity(quantity);
+    }
+
     public int getId()
     {
         return id;

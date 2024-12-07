@@ -15,6 +15,14 @@ public class Branch
         this.branchPhone = branchPhone;
     }
 
+    // Overloaded constructor without branchId (for new branches)
+    public Branch(String branchName, String branchAddress, String branchPhone)
+    {
+        this.branchName = branchName;
+        this.branchAddress = branchAddress;
+        this.branchPhone = branchPhone;
+    }
+
     public int getBranchId()
     {
         return branchId;

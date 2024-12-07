@@ -9,7 +9,16 @@ public class ChatMessage {
     private String messageText;
     private Timestamp timestamp;
 
-    // Constructor
+    // Parameterized Constructor
+    public ChatMessage(int id, int senderId, int chatSessionId, String messageText, Timestamp timestamp) {
+        this.id = id;
+        this.senderId = senderId;
+        this.chatSessionId = chatSessionId;
+        this.messageText = messageText;
+        this.timestamp = timestamp;
+    }
+
+    // Overloaded Constructor without ID (for new messages)
     public ChatMessage(int senderId, int chatSessionId, String messageText, Timestamp timestamp) {
         this.senderId = senderId;
         this.chatSessionId = chatSessionId;

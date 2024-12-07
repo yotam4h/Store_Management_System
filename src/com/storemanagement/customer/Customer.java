@@ -20,6 +20,14 @@ public class Customer {
         this.purchaseHistory = purchaseHistory; // Set the purchase history
     }
 
+    // Overloaded Constructor without ID (for new customers)
+    public Customer(String fullName, String phoneNumber, CustomerType customerType, List<PurchaseHistory> purchaseHistory) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.customerType = customerType;
+        this.purchaseHistory = purchaseHistory; // Set the purchase history
+    }
+
     // Getters and Setters
     public int getId() {
         return id;

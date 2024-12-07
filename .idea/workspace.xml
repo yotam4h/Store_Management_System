@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="added ui package" />
+    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="dummy file for ui package">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/branch/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/branch/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/inventory/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/inventory/Product.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -287,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733587601480</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="dummy file for ui package">
+      <option name="closed" value="true" />
+      <created>1733587704615</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733587704615</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +342,8 @@
     <MESSAGE value="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice" />
     <MESSAGE value="..." />
     <MESSAGE value="added ui package" />
-    <option name="LAST_COMMIT_MESSAGE" value="added ui package" />
+    <MESSAGE value="dummy file for ui package" />
+    <option name="LAST_COMMIT_MESSAGE" value="dummy file for ui package" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
