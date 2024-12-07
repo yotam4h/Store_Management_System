@@ -1,0 +1,53 @@
+Index: src/com/storemanagement/admin/AdminServiceTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.storemanagement.admin;\r\n\r\nimport com.storemanagement.models.Employee;\r\nimport com.storemanagement.utils.DatabaseConnection;\r\nimport com.storemanagement.utils.Constants.EmployeeRole;\r\n\r\nimport org.junit.jupiter.api.*;\r\nimport java.sql.*;\r\nimport java.util.List;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\n@TestInstance(TestInstance.Lifecycle.PER_CLASS)\r\npublic class AdminServiceTest {\r\n\r\n    private final AdminService adminService = new AdminService();\r\n\r\n    @BeforeEach\r\n    void cleanDatabase() {\r\n        try {\r\n            DatabaseConnection dbConnection = DatabaseConnection.getInstance();\r\n            Connection connection = dbConnection.getConnection();\r\n            Statement stmt = connection.createStatement();\r\n\r\n            // Clear only the Employees table for testing purposes\r\n            stmt.execute(\"DELETE FROM Employees\");\r\n\r\n        } catch (SQLException e) {\r\n            System.out.println(\"Error cleaning database: \" + e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    @Test\r\n    void testAddEmployee() {\r\n        Employee employee = new Employee(\"John Doe\", \"123-4567\", EmployeeRole.MANAGER, 1);\r\n        boolean isAdded = adminService.addEmployee(employee);\r\n\r\n        assertTrue(isAdded, \"Employee should be added successfully\");\r\n\r\n        // Verify in the database\r\n        try {\r\n            DatabaseConnection dbConnection = DatabaseConnection.getInstance();\r\n            Statement stmt = dbConnection.createStatement();\r\n            ResultSet rs = stmt.executeQuery(\"SELECT * FROM Employees WHERE full_name = 'John Doe'\");\r\n\r\n            assertTrue(rs.next(), \"Employee should exist in the database\");\r\n            assertEquals(employee.getFullName(), rs.getString(\"full_name\"), \"Employee name should match\");\r\n            assertEquals(employee.getId(), rs.getInt(\"id\"), \"Employee ID should match\");\r\n\r\n        } catch (SQLException e) {\r\n            fail(\"Error verifying database: \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testListEmployees() {\r\n        // Add sample employees\r\n        adminService.addEmployee(new Employee(\"Alice Johnson\", \"555-1234\", EmployeeRole.ADMIN, 1));\r\n        adminService.addEmployee(new Employee(\"Bob Smith\", \"555-5678\", EmployeeRole.EMPLOYEE, 1));\r\n\r\n        // Fetch employees\r\n        List<Employee> employees = adminService.listEmployees();\r\n\r\n        assertEquals(2, employees.size(), \"There should be 2 employees in the database\");\r\n        assertEquals(\"Alice Johnson\", employees.get(0).getFullName(), \"First employee's name should match\");\r\n        assertEquals(\"Bob Smith\", employees.get(1).getFullName(), \"Second employee's name should match\");\r\n    }\r\n\r\n    @Test\r\n    void testRemoveEmployee() {\r\n        // Add an employee to remove\r\n\r\n        boolean isAdded = adminService.addEmployee(new Employee(\"Charlie Brown\", \"555-9999\", EmployeeRole.MANAGER, 1));\r\n        assertTrue(isAdded, \"Employee should be added successfully\");\r\n\r\n        // Fetch the employee ID from the database\r\n        int employeeId = adminService.listEmployees().get(0).getId();\r\n        System.out.println(\"Employee ID: \" + employeeId);\r\n\r\n        // Remove the employee\r\n        boolean isRemoved = adminService.removeEmployee(employeeId);\r\n\r\n        assertTrue(isRemoved, \"Employee should be removed successfully\");\r\n\r\n        // Verify the employee no longer exists\r\n        try {\r\n            DatabaseConnection dbConnection = DatabaseConnection.getInstance();\r\n            Statement stmt = dbConnection.createStatement();\r\n            ResultSet rs = stmt.executeQuery(\"SELECT * FROM Employees WHERE id = \" + employeeId);\r\n\r\n            assertFalse(rs.next(), \"Employee should not exist in the database\");\r\n\r\n        } catch (SQLException e) {\r\n            fail(\"Error verifying database: \" + e.getMessage());\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/storemanagement/admin/AdminServiceTest.java b/src/com/storemanagement/admin/AdminServiceTest.java
+--- a/src/com/storemanagement/admin/AdminServiceTest.java	(revision 1421a31e1dfa125659f41c47a2639fe4b2707fe9)
++++ b/src/com/storemanagement/admin/AdminServiceTest.java	(date 1733335329497)
+@@ -17,18 +17,13 @@
+ 
+     @BeforeEach
+     void cleanDatabase() {
+-        try {
+             DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+-            Connection connection = dbConnection.getConnection();
+-            Statement stmt = connection.createStatement();
+-
+-            // Clear only the Employees table for testing purposes
+-            stmt.execute("DELETE FROM Employees");
+-
+-        } catch (SQLException e) {
+-            System.out.println("Error cleaning database: " + e.getMessage());
+-        }
+-
++            try {
++                Statement stmt = dbConnection.createStatement();
++                stmt.execute("DELETE FROM Employees");
++            } catch (SQLException e) {
++                System.out.println("Error cleaning database: " + e.getMessage());
++            }
+     }
+ 
+     @Test
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-243.21565.193\">\r\n    <data-source name=\"@filess.io\" uuid=\"0c7623a4-d46d-4ff6-b951-da6cb1adf539\">\r\n      <database-info product=\"MySQL\" version=\"8.0.36-28\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)\" dbms=\"MYSQL\" exact-version=\"8.0.36\" exact-driver-version=\"8.2\">\r\n        <extra-name-characters>#@</extra-name-characters>\r\n        <identifier-quote-string>`</identifier-quote-string>\r\n        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"exact\" quoted-identifiers=\"exact\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <user-name>StoreManagementSystem_statement</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\" qname=\"@\" />\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 1421a31e1dfa125659f41c47a2639fe4b2707fe9)
++++ b/.idea/dataSources.local.xml	(date 1733331995264)
+@@ -5,7 +5,6 @@
+       <database-info product="MySQL" version="8.0.36-28" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.36" exact-driver-version="8.2">
+         <extra-name-characters>#@</extra-name-characters>
+         <identifier-quote-string>`</identifier-quote-string>
+-        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
+       </database-info>
+       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+       <secret-storage>master_key</secret-storage>

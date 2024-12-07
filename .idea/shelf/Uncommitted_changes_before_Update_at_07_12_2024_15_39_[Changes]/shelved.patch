@@ -1,0 +1,157 @@
+Index: src/com/storemanagement/admin/AdminServiceTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.storemanagement.admin;\r\n\r\nimport com.storemanagement.models.Employee;\r\nimport com.storemanagement.utils.DatabaseConnection;\r\nimport com.storemanagement.utils.Constants.EmployeeRole;\r\n\r\nimport org.junit.jupiter.api.*;\r\nimport java.sql.*;\r\nimport java.util.List;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\n@TestInstance(TestInstance.Lifecycle.PER_CLASS)\r\npublic class AdminServiceTest {\r\n\r\n    private final AdminService adminService = new AdminService();\r\n\r\n    @BeforeEach\r\n    void cleanDatabase() {\r\n        try {\r\n            DatabaseConnection dbConnection = DatabaseConnection.getInstance();\r\n            Connection connection = dbConnection.getConnection();\r\n            Statement stmt = connection.createStatement();\r\n\r\n            // Clear only the Employees table for testing purposes\r\n            stmt.execute(\"DELETE FROM Employees\");\r\n\r\n        } catch (SQLException e) {\r\n            System.out.println(\"Error cleaning database: \" + e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    @Test\r\n    void testAddEmployee() {\r\n        Employee employee = new Employee(\"John Doe\", \"123-4567\", EmployeeRole.MANAGER, 1);\r\n        boolean isAdded = adminService.addEmployee(employee);\r\n\r\n        assertTrue(isAdded, \"Employee should be added successfully\");\r\n\r\n        // Verify in the database\r\n        try {\r\n            DatabaseConnection dbConnection = DatabaseConnection.getInstance();\r\n            Statement stmt = dbConnection.createStatement();\r\n            ResultSet rs = stmt.executeQuery(\"SELECT * FROM Employees WHERE full_name = 'John Doe'\");\r\n\r\n            assertTrue(rs.next(), \"Employee should exist in the database\");\r\n            assertEquals(employee.getFullName(), rs.getString(\"full_name\"), \"Employee name should match\");\r\n            assertEquals(employee.getId(), rs.getInt(\"id\"), \"Employee ID should match\");\r\n\r\n        } catch (SQLException e) {\r\n            fail(\"Error verifying database: \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testListEmployees() {\r\n        // Add sample employees\r\n        adminService.addEmployee(new Employee(\"Alice Johnson\", \"555-1234\", EmployeeRole.ADMIN, 1));\r\n        adminService.addEmployee(new Employee(\"Bob Smith\", \"555-5678\", EmployeeRole.EMPLOYEE, 1));\r\n\r\n        // Fetch employees\r\n        List<Employee> employees = adminService.listEmployees();\r\n\r\n        assertEquals(2, employees.size(), \"There should be 2 employees in the database\");\r\n        assertEquals(\"Alice Johnson\", employees.get(0).getFullName(), \"First employee's name should match\");\r\n        assertEquals(\"Bob Smith\", employees.get(1).getFullName(), \"Second employee's name should match\");\r\n    }\r\n\r\n    @Test\r\n    void testRemoveEmployee() {\r\n        // Add an employee to remove\r\n\r\n        boolean isAdded = adminService.addEmployee(new Employee(\"Charlie Brown\", \"555-9999\", EmployeeRole.MANAGER, 1));\r\n        assertTrue(isAdded, \"Employee should be added successfully\");\r\n\r\n        // Fetch the employee ID from the database\r\n        int employeeId = adminService.listEmployees().get(0).getId();\r\n        System.out.println(\"Employee ID: \" + employeeId);\r\n\r\n        // Remove the employee\r\n        boolean isRemoved = adminService.removeEmployee(employeeId);\r\n\r\n        assertTrue(isRemoved, \"Employee should be removed successfully\");\r\n\r\n        // Verify the employee no longer exists\r\n        try {\r\n            DatabaseConnection dbConnection = DatabaseConnection.getInstance();\r\n            Statement stmt = dbConnection.createStatement();\r\n            ResultSet rs = stmt.executeQuery(\"SELECT * FROM Employees WHERE id = \" + employeeId);\r\n\r\n            assertFalse(rs.next(), \"Employee should not exist in the database\");\r\n\r\n        } catch (SQLException e) {\r\n            fail(\"Error verifying database: \" + e.getMessage());\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/storemanagement/admin/AdminServiceTest.java b/src/com/storemanagement/admin/AdminServiceTest.java
+--- a/src/com/storemanagement/admin/AdminServiceTest.java	(revision 32aa52ee2de285a68d22da3f3eafb616a726ecc8)
++++ b/src/com/storemanagement/admin/AdminServiceTest.java	(date 1733578281103)
+@@ -17,18 +17,13 @@
+ 
+     @BeforeEach
+     void cleanDatabase() {
+-        try {
+             DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+-            Connection connection = dbConnection.getConnection();
+-            Statement stmt = connection.createStatement();
+-
+-            // Clear only the Employees table for testing purposes
+-            stmt.execute("DELETE FROM Employees");
+-
+-        } catch (SQLException e) {
+-            System.out.println("Error cleaning database: " + e.getMessage());
+-        }
+-
++            try {
++                Statement stmt = dbConnection.createStatement();
++                stmt.execute("DELETE FROM Employees");
++            } catch (SQLException e) {
++                System.out.println("Error cleaning database: " + e.getMessage());
++            }
+     }
+ 
+     @Test
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.sql.Connection;\r\n\r\nimport com.storemanagement.utils.DatabaseConnection;\r\n\r\npublic class Main\r\n{\r\n    public static void main(String[] args)\r\n    {\r\n//        // Get the database connection\r\n//        DatabaseConnection dbConnection = DatabaseConnection.getInstance();\r\n//        Connection connection = dbConnection.getConnection();\r\n//\r\n//        // Use the connection (e.g., execute a query)\r\n//        try {\r\n//            if (connection != null) {\r\n//                System.out.println(\"Database connected successfully!\");\r\n//\r\n//                // Execute a query\r\n//                String query = \"SELECT * FROM employees\";\r\n//                dbConnection.executeQuery(query);\r\n//            }\r\n//        } catch (Exception e) {\r\n//            e.printStackTrace();\r\n//        } finally {\r\n//            dbConnection.closeConnection(); // Optional cleanup\r\n//        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision 32aa52ee2de285a68d22da3f3eafb616a726ecc8)
++++ b/src/Main.java	(date 1733578588077)
+@@ -16,7 +16,7 @@
+ //                System.out.println("Database connected successfully!");
+ //
+ //                // Execute a query
+-//                String query = "SELECT * FROM employees";
++//                String query = "SELECT * FROM Employees";
+ //                dbConnection.executeQuery(query);
+ //            }
+ //        } catch (Exception e) {
+@@ -24,6 +24,5 @@
+ //        } finally {
+ //            dbConnection.closeConnection(); // Optional cleanup
+ //        }
+-
+     }
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b5a28ba9-eea2-402f-9cee-239289fc5705\" name=\"Changes\" comment=\"sql class files\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/sqldialects.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/sqldialects.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Database/InsertTable.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Database/InsertTable.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;history&quot;: [\r\n    {\r\n      &quot;state&quot;: &quot;OPEN&quot;,\r\n      &quot;assignee&quot;: &quot;RoeiA98&quot;,\r\n      &quot;author&quot;: &quot;yotam4h&quot;\r\n    }\r\n  ],\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;RoeiA98&quot;,\r\n    &quot;author&quot;: &quot;yotam4h&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/yotam4h/Store_Management_System.git&quot;,\r\n    &quot;accountId&quot;: &quot;e533682c-6afe-4695-826f-4bb735f3ee36&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2p7ravZhkzM0ARIY7xNZEaQSxqh\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.AccessTable.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.CreateTable.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [\r\n      &quot;SQL&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/src\" />\r\n      <recent name=\"$PROJECT_DIR$/lib\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b5a28ba9-eea2-402f-9cee-239289fc5705\" name=\"Changes\" comment=\"\" />\r\n      <created>1732128021465</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1732128021465</updated>\r\n      <workItem from=\"1732193248796\" duration=\"191000\" />\r\n      <workItem from=\"1732193445730\" duration=\"80000\" />\r\n      <workItem from=\"1733570452040\" duration=\"65000\" />\r\n      <workItem from=\"1733570528137\" duration=\"30000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"test\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732128237944</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732128237944</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"lib file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732129330550</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732129330550</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"lib file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732129527456</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732129527456</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"lib file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732130664895</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732130664895</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"lib file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732130905689</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732130905689</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"sql class files\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732131454507</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732131454507</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"sql class files\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732131713608</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732131713608</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"sql class files\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732142808865</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732142808865</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/main\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"test\" />\r\n    <MESSAGE value=\"lib file\" />\r\n    <MESSAGE value=\"sql class files\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"sql class files\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 32aa52ee2de285a68d22da3f3eafb616a726ecc8)
++++ b/.idea/workspace.xml	(date 1733578532286)
+@@ -5,9 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="sql class files">
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Database/InsertTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/InsertTable.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/admin/AdminServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/admin/AdminServiceTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -48,35 +48,54 @@
+   &quot;associatedIndex&quot;: 4
+ }</component>
+   <component name="ProjectId" id="2p7ravZhkzM0ARIY7xNZEaQSxqh" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.AccessTable.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.CreateTable.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.AccessTable.executor": "Run",
++    "Application.CreateTable.executor": "Run",
++    "Application.Main.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "git-widget-placeholder": "main",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "preferences.pluginManager",
++    "vue.rearranger.settings.migration": "true"
+   },
+-  &quot;keyToStringList&quot;: {
+-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+-      &quot;SQL&quot;
++  "keyToStringList": {
++    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
++      "SQL"
+     ]
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/src" />
+       <recent name="$PROJECT_DIR$/lib" />
+     </key>
++  </component>
++  <component name="RunManager">
++    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="Main" />
++      <module name="Store_Management_System" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Application.Main" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
