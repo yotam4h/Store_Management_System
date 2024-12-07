@@ -77,6 +77,17 @@ CREATE TABLE IF NOT EXISTS ChatSessions (
                                             FOREIGN KEY (to_user_id) REFERENCES Users(id)
 );
 
+-- Create ChatMessages Table
+CREATE TABLE IF NOT EXISTS ChatMessages (
+                                            id INT AUTO_INCREMENT PRIMARY KEY,
+                                            sender_id INT,
+                                            chat_session_id INT,
+                                            message_text TEXT NOT NULL,
+                                            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                            FOREIGN KEY (sender_id) REFERENCES Users(id),
+                                            FOREIGN KEY (chat_session_id) REFERENCES ChatSessions(id)
+);
+
 -- Create Logs Table
 CREATE TABLE IF NOT EXISTS Logs (
                                     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -134,7 +145,66 @@ BEGIN
         CREATE INDEX idx_employees_full_name ON Employees (full_name);
     END IF;
 
-    -- Repeat for other indexes as needed...
+    -- ChatSessions Table Indexes
+    IF NOT EXISTS (
+        SELECT 1
+        FROM information_schema.statistics
+        WHERE table_schema = DATABASE() AND table_name = 'ChatSessions' AND index_name = 'idx_chat_sessions_from_user'
+    ) THEN
+        CREATE INDEX idx_chat_sessions_from_user ON ChatSessions (from_user_id);
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM information_schema.statistics
+        WHERE table_schema = DATABASE() AND table_name = 'ChatSessions' AND index_name = 'idx_chat_sessions_to_user'
+    ) THEN
+        CREATE INDEX idx_chat_sessions_to_user ON ChatSessions (to_user_id);
+    END IF;
+
+    -- ChatMessages Table Indexes
+    IF NOT EXISTS (
+        SELECT 1
+        FROM information_schema.statistics
+        WHERE table_schema = DATABASE() AND table_name = 'ChatMessages' AND index_name = 'idx_chat_messages_sender'
+    ) THEN
+        CREATE INDEX idx_chat_messages_sender ON ChatMessages (sender_id);
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM information_schema.statistics
+        WHERE table_schema = DATABASE() AND table_name = 'ChatMessages' AND index_name = 'idx_chat_messages_session'
+    ) THEN
+        CREATE INDEX idx_chat_messages_session ON ChatMessages (chat_session_id);
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM information_schema.statistics
+        WHERE table_schema = DATABASE() AND table_name = 'ChatMessages' AND index_name = 'idx_chat_messages_timestamp'
+    ) THEN
+        CREATE INDEX idx_chat_messages_timestamp ON ChatMessages (timestamp);
+    END IF;
+
+    -- Sales Table Indexes (Optional)
+    IF NOT EXISTS (
+        SELECT 1
+        FROM information_schema.statistics
+        WHERE table_schema = DATABASE() AND table_name = 'Sales' AND index_name = 'idx_sales_customer_product'
+    ) THEN
+        CREATE INDEX idx_sales_customer_product ON Sales (customer_id, product_id);
+    END IF;
+
+    -- Logs Table Index
+    IF NOT EXISTS (
+        SELECT 1
+        FROM information_schema.statistics
+        WHERE table_schema = DATABASE() AND table_name = 'Logs' AND index_name = 'idx_logs_type'
+    ) THEN
+        CREATE INDEX idx_logs_type ON Logs (log_type);
+    END IF;
+
 END //
 
 DELIMITER ;

@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation">
+    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Merge remote-tracking branch 'origin/main'">
+      <change afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/storemanagement/utils/clean_tables.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/mindrot/jbcrypt/BCrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c7623a4-d46d-4ff6-b951-da6cb1adf539.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c7623a4-d46d-4ff6-b951-da6cb1adf539.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +72,11 @@
     "Application.AccessTable.executor": "Run",
     "Application.CreateTable.executor": "Run",
     "Application.Main.executor": "Run",
+    "Database Script.create_tables.sql.executor": "Run",
+    "Database Script.populate_tables.sql.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System",
@@ -78,6 +89,10 @@
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "RunConfigurationTargetLRU": [
+      "0c7623a4-d46d-4ff6-b951-da6cb1adf539/schema/\"StoreManagementSystem_statement\"",
+      "0c7623a4-d46d-4ff6-b951-da6cb1adf539"
+    ],
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
       "SQL"
     ]
@@ -85,11 +100,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\IdeaProjects\Store_Management_System\src\org\mindrot\jbcrypt" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Database Script.create_tables.sql">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Store_Management_System" />
@@ -97,8 +113,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="create_tables.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="0c7623a4-d46d-4ff6-b951-da6cb1adf539" />
+      <method v="2" />
+    </configuration>
+    <configuration name="populate_tables.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/com/storemanagement/utils/populate_tables.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="0c7623a4-d46d-4ff6-b951-da6cb1adf539" namespace="schema/&quot;StoreManagementSystem_statement&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.create_tables.sql" />
+        <item itemvalue="Database Script.populate_tables.sql" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -220,7 +250,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733581920815</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1733581975949</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733581975949</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,9 +292,9 @@
     <MESSAGE value="lib file" />
     <MESSAGE value="sql class files" />
     <MESSAGE value="Add AdminService and LogEntry classes, and implement basic CRUD operations&#10;&#10;- Implement AdminService with methods to add, remove, list, and update employees and branches&#10;- Create LogEntry class to represent log entries with logId, timestamp, operationType, and details&#10;- Add basic structure for CustomerService and BranchService classes&#10;- Ensure database connection handling in AdminService methods" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
     <MESSAGE value="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

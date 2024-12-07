@@ -1,74 +1,85 @@
 package com.storemanagement.chat;
 
+import java.sql.Timestamp;
 import java.util.List;
 
-public class ChatSession
-{
-    int sessionId;
-    int fromUserId;
-    int toUserId;
-    List<String> messages;
+public class ChatSession {
+    private int id;
+    private int fromUserId;
+    private int toUserId;
+    private Timestamp startTime;
+    private Timestamp endTime;
 
-    public ChatSession(int sessionId, int fromUserId, int toUserId, List<String> messages)
-    {
-        setSessionId(sessionId);
-        setFromUserId(fromUserId);
-        setToUserId(toUserId);
-        setMessages(messages);
+    // Constructor for a new session
+    public ChatSession(int fromUserId, int toUserId, Timestamp startTime) {
+        this.fromUserId = fromUserId;
+        this.toUserId = toUserId;
+        this.startTime = startTime;
+        this.endTime = null; // Initial session has no end time
     }
 
-    public int getSessionId()
-    {
-        return sessionId;
+    // Constructor for a completed session
+    public ChatSession(int fromUserId, int toUserId, Timestamp startTime, Timestamp endTime) {
+        this.fromUserId = fromUserId;
+        this.toUserId = toUserId;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    public void setSessionId(int sessionId)
-    {
-        this.sessionId = sessionId;
+    // Getters and setters
+    public int getId() {
+        return id;
     }
 
-    public int getFromUserId()
-    {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getFromUserId() {
         return fromUserId;
     }
 
-    public void setFromUserId(int fromUserId)
-    {
+    public void setFromUserId(int fromUserId) {
         this.fromUserId = fromUserId;
     }
 
-    public int getToUserId()
-    {
+    public int getToUserId() {
         return toUserId;
     }
 
-    public void setToUserId(int toUserId)
-    {
+    public void setToUserId(int toUserId) {
         this.toUserId = toUserId;
     }
 
-    public List<String> getMessages()
-    {
-        return messages;
+    public Timestamp getStartTime() {
+        return startTime;
     }
 
-    public void setMessages(List<String> messages)
-    {
-        this.messages = messages;
+    public void setStartTime(Timestamp startTime) {
+        this.startTime = startTime;
     }
 
-    public void addMessage(String message)
-    {
-        messages.add(message);
+    public Timestamp getEndTime() {
+        return endTime;
     }
 
-    public String toString()
-    {
+    public void setEndTime(Timestamp endTime) {
+        this.endTime = endTime;
+    }
+
+    // Method to retrieve the chat history (all messages in the session)
+    public List<ChatMessage> getChatHistory(ChatService chatService) {
+        return chatService.getChatHistory(this.id);
+    }
+
+    @Override
+    public String toString() {
         return "ChatSession{" +
-                "sessionId=" + sessionId +
+                "id=" + id +
                 ", fromUserId=" + fromUserId +
                 ", toUserId=" + toUserId +
-                ", messages=" + messages +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
                 '}';
     }
 }
