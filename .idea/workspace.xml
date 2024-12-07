@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice" />
+    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,37 +58,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AccessTable.executor": "Run",
-    "Application.CreateTable.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Database Script.create_tables.sql.executor": "Run",
-    "Database Script.populate_tables.sql.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AccessTable.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CreateTable.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Database Script.create_tables.sql.executor&quot;: &quot;Run&quot;,
+    &quot;Database Script.populate_tables.sql.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "RunConfigurationTargetLRU": [
-      "0c7623a4-d46d-4ff6-b951-da6cb1adf539/schema/\"StoreManagementSystem_statement\"",
-      "0c7623a4-d46d-4ff6-b951-da6cb1adf539"
+  &quot;keyToStringList&quot;: {
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;0c7623a4-d46d-4ff6-b951-da6cb1adf539/schema/\&quot;StoreManagementSystem_statement\&quot;&quot;,
+      &quot;0c7623a4-d46d-4ff6-b951-da6cb1adf539&quot;
     ],
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "SQL"
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;SQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Documents\IdeaProjects\Store_Management_System\src\org\mindrot\jbcrypt" />
@@ -271,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733586339742</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="...">
+      <option name="closed" value="true" />
+      <created>1733586647334</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733586647334</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +319,19 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
     <MESSAGE value="Implement ChatService and ChatMessage classes, and enhance UserService with CRUD operations&#10;&#10;- Add ChatService with methods to start, send messages, retrieve chat history, and end chat sessions&#10;- Create ChatMessage class with fields: id, senderId, chatSessionId, messageText, and timestamp&#10;- Implement CRUD operations in UserService: removeUser, getUserById, and listUsers&#10;- Add ChatSession class with constructors, getters, setters, and method to retrieve chat history" />
     <MESSAGE value="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/storemanagement/branch/BranchService.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
