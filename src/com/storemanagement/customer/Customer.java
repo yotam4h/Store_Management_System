@@ -1,4 +1,4 @@
-package com.customer;
+package com.storemanagement.customer;
 
 import com.storemanagement.sales.Sale;
 import com.storemanagement.utils.Constants.CustomerType;
