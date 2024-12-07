@@ -5,7 +5,7 @@ public class AuthenticationService
     // TODO implement this method
     public boolean login(String username, String password)
     {
-        return false;
+
     }
 
     // TODO implement this method
@@ -19,4 +19,17 @@ public class AuthenticationService
     {
         return false;
     }
+
+    // TODO implement this method
+    public boolean validateSession(int userId, String sessionId)
+    {
+        return false;
+    }
+
+    // TODO implement this method
+    public String generateSessionToken(int userId)
+    {
+        return null;
+    }
+
 }

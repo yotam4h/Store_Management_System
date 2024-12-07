@@ -8,16 +8,16 @@ import java.util.List;
 public class Customer
 {
     int id;
-    String firstName;
-    String lastName;
+    String fullName;
+    String phoneNumber;
     CustomerType type;
     List<Sale> purchaseHistory;
 
-    public Customer(int id, String firstName, String lastName, CustomerType type, List<Sale> purchaseHistory)
+    public Customer(int id, String fullName, String phoneNumber, CustomerType type, List<Sale> purchaseHistory)
     {
         setId(id);
-        setFirstName(firstName);
-        setLastName(lastName);
+        setFullName(fullName);
+        setPhoneNumber(phoneNumber);
         setType(type);
         setPurchaseHistory(purchaseHistory);
     }
@@ -32,24 +32,24 @@ public class Customer
         this.id = id;
     }
 
-    public String getFirstName()
+    public String getFullName()
     {
-        return firstName;
+        return fullName;
     }
 
-    public void setFirstName(String firstName)
+    public void setFullName(String fullName)
     {
-        this.firstName = firstName;
+        this.fullName = fullName;
     }
 
-    public String getLastName()
+    public String getPhoneNumber()
     {
-        return lastName;
+        return phoneNumber;
     }
 
-    public void setLastName(String lastName)
+    public void setPhoneNumber(String phoneNumber)
     {
-        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
     }
 
     public CustomerType getType()
@@ -100,8 +100,7 @@ public class Customer
     {
         return "Customer{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + fullName + '\'' +
                 ", type=" + type +
                 ", purchaseHistory=" + purchaseHistory +
                 '}';
