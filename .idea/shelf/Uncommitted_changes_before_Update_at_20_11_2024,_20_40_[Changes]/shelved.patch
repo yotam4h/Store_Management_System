@@ -1,0 +1,36 @@
+Index: Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Main {\n\n    public static void main(String[] args) {\n        System.out.println(\"hello\");\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Main.java b/Main.java
+--- a/Main.java	(revision 3a79aaf90b28ff9210ab0e6e77aa91328821a6c1)
++++ b/Main.java	(date 1732127659055)
+@@ -1,7 +1,25 @@
++import java.sql.Connection;
++import java.sql.DriverManager;
++import java.sql.ResultSet;
++import java.sql.SQLException;
++import java.sql.Statement;
++
++
+ public class Main {
+ 
+     public static void main(String[] args) {
+         System.out.println("hello");
+     }
+ 
++    String url = "jdbc:mysql://ifa3z.h.filess.io:3307/StoreManagementSystem_statement";
++    String username = "StoreManagementSystem_statement";
++    String password = "9d05a4dffc9ff707e2c31864cb098c6eb23782a0";
++
++    try (Connection connection = DriverManager.getConnection(url, username, password)) {
++        System.out.println("Connected successfully!");
++    } catch (SQLException e) {
++        e.printStackTrace();
++    }
++
++
+ }
