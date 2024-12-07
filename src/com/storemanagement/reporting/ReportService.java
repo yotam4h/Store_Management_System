@@ -1,10 +1,14 @@
 package com.storemanagement.reporting;
 
-public class ReportService
-{
+public class ReportService {
     // TODO: implement this method
-    String generateSalesReportByBranch(int branchId)
-    {
+    String generateSalesReportByBranch(int branchId) {
+
+
+
+
+
+
         return null;
     }
 

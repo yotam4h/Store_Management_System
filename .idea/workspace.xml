@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Merge remote-tracking branch 'origin/main'">
-      <change afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/storemanagement/utils/clean_tables.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/mindrot/jbcrypt/BCrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c7623a4-d46d-4ff6-b951-da6cb1adf539.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c7623a4-d46d-4ff6-b951-da6cb1adf539.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/admin/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/admin/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/reporting/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/reporting/ReportService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,45 +61,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AccessTable.executor": "Run",
-    "Application.CreateTable.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Database Script.create_tables.sql.executor": "Run",
-    "Database Script.populate_tables.sql.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AccessTable.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CreateTable.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Roei/Desktop/Study/Year 3/SemesterA/webprogramming/Store_Management_System&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "RunConfigurationTargetLRU": [
-      "0c7623a4-d46d-4ff6-b951-da6cb1adf539/schema/\"StoreManagementSystem_statement\"",
-      "0c7623a4-d46d-4ff6-b951-da6cb1adf539"
-    ],
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "SQL"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;SQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Documents\IdeaProjects\Store_Management_System\src\org\mindrot\jbcrypt" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Database Script.create_tables.sql">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Store_Management_System" />
@@ -113,22 +99,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="create_tables.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
-      <script-file value="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" />
-      <script-mode>FILE</script-mode>
-      <data-source id="0c7623a4-d46d-4ff6-b951-da6cb1adf539" />
-      <method v="2" />
-    </configuration>
-    <configuration name="populate_tables.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
-      <script-file value="$PROJECT_DIR$/src/com/storemanagement/utils/populate_tables.sql" />
-      <script-mode>FILE</script-mode>
-      <data-source id="0c7623a4-d46d-4ff6-b951-da6cb1adf539" namespace="schema/&quot;StoreManagementSystem_statement&quot;" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Database Script.create_tables.sql" />
-        <item itemvalue="Database Script.populate_tables.sql" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -234,31 +206,7 @@
       <option name="project" value="LOCAL" />
       <updated>1733579680931</updated>
     </task>
-    <task id="LOCAL-00011" summary="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation">
-      <option name="closed" value="true" />
-      <created>1733581898471</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1733581898471</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation">
-      <option name="closed" value="true" />
-      <created>1733581920815</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1733581920815</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Merge remote-tracking branch 'origin/main'">
-      <option name="closed" value="true" />
-      <created>1733581975949</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1733581975949</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +240,6 @@
     <MESSAGE value="lib file" />
     <MESSAGE value="sql class files" />
     <MESSAGE value="Add AdminService and LogEntry classes, and implement basic CRUD operations&#10;&#10;- Implement AdminService with methods to add, remove, list, and update employees and branches&#10;- Create LogEntry class to represent log entries with logId, timestamp, operationType, and details&#10;- Add basic structure for CustomerService and BranchService classes&#10;- Ensure database connection handling in AdminService methods" />
-    <MESSAGE value="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
     <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'" />
   </component>
