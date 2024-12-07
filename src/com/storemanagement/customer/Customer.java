@@ -1,108 +1,74 @@
 package com.storemanagement.customer;
 
-import com.storemanagement.sales.Sale;
 import com.storemanagement.utils.Constants.CustomerType;
 
 import java.util.List;
 
-public class Customer
-{
-    int id;
-    String fullName;
-    String phoneNumber;
-    CustomerType type;
-    List<Sale> purchaseHistory;
+public class Customer {
+    private int id;
+    private String fullName;
+    private String phoneNumber;
+    private CustomerType customerType; // 'NEW', 'RETURNING', 'VIP'
+    private List<PurchaseHistory> purchaseHistory; // New list of purchases
 
-    public Customer(int id, String fullName, String phoneNumber, CustomerType type, List<Sale> purchaseHistory)
-    {
-        setId(id);
-        setFullName(fullName);
-        setPhoneNumber(phoneNumber);
-        setType(type);
-        setPurchaseHistory(purchaseHistory);
+    // Constructor
+    public Customer(int id, String fullName, String phoneNumber, CustomerType customerType, List<PurchaseHistory> purchaseHistory) {
+        this.id = id;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.customerType = customerType;
+        this.purchaseHistory = purchaseHistory; // Set the purchase history
     }
 
-    public int getId()
-    {
+    // Getters and Setters
+    public int getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getFullName()
-    {
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName)
-    {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
-    public String getPhoneNumber()
-    {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber)
-    {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public CustomerType getType()
-    {
-        return type;
+    public CustomerType getType() {
+        return customerType;
     }
 
-    public void setType(CustomerType type)
-    {
-        this.type = type;
+    public void setType(CustomerType customerType) {
+        this.customerType = customerType;
     }
 
-    public List<Sale> getPurchaseHistory()
-    {
+    public List<PurchaseHistory> getPurchaseHistory() {
         return purchaseHistory;
     }
 
-    public void setPurchaseHistory(List<Sale> purchaseHistory)
-    {
+    public void setPurchaseHistory(List<PurchaseHistory> purchaseHistory) {
         this.purchaseHistory = purchaseHistory;
     }
 
-    public void addSale(Sale sale)
-    {
-        purchaseHistory.add(sale);
-    }
-
-    public void removeSale(Sale sale)
-    {
-        purchaseHistory.remove(sale);
-    }
-
-    public void updateSale(Sale sale)
-    {
-        // Update sale in purchase history
-    }
-
-    public void printPurchaseHistory()
-    {
-        for (Sale sale : purchaseHistory)
-        {
-            System.out.println(sale);
-        }
-    }
-
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", firstName='" + fullName + '\'' +
-                ", type=" + type +
-                ", purchaseHistory=" + purchaseHistory +
+                ", fullName='" + fullName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", customerType='" + customerType + '\'' +
+                ", purchaseHistory=" + purchaseHistory + // Include purchase history in the string representation
                 '}';
     }
 }

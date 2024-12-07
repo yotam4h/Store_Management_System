@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Merge remote-tracking branch 'origin/main'">
-      <change afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/storemanagement/utils/clean_tables.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/mindrot/jbcrypt/BCrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c7623a4-d46d-4ff6-b951-da6cb1adf539.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c7623a4-d46d-4ff6-b951-da6cb1adf539.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/chat/ChatSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/utils/create_tables.sql" afterDir="false" />
-    </list>
+    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -258,7 +247,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733581975949</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Implement ChatService and ChatMessage classes, and enhance UserService with CRUD operations&#10;&#10;- Add ChatService with methods to start, send messages, retrieve chat history, and end chat sessions&#10;- Create ChatMessage class with fields: id, senderId, chatSessionId, messageText, and timestamp&#10;- Implement CRUD operations in UserService: removeUser, getUserById, and listUsers&#10;- Add ChatSession class with constructors, getters, setters, and method to retrieve chat history">
+      <option name="closed" value="true" />
+      <created>1733585196068</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733585196068</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice">
+      <option name="closed" value="true" />
+      <created>1733586239235</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733586239235</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice">
+      <option name="closed" value="true" />
+      <created>1733586339742</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733586339742</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,7 +307,9 @@
     <MESSAGE value="Add AdminService and LogEntry classes, and implement basic CRUD operations&#10;&#10;- Implement AdminService with methods to add, remove, list, and update employees and branches&#10;- Create LogEntry class to represent log entries with logId, timestamp, operationType, and details&#10;- Add basic structure for CustomerService and BranchService classes&#10;- Ensure database connection handling in AdminService methods" />
     <MESSAGE value="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="Implement ChatService and ChatMessage classes, and enhance UserService with CRUD operations&#10;&#10;- Add ChatService with methods to start, send messages, retrieve chat history, and end chat sessions&#10;- Create ChatMessage class with fields: id, senderId, chatSessionId, messageText, and timestamp&#10;- Implement CRUD operations in UserService: removeUser, getUserById, and listUsers&#10;- Add ChatSession class with constructors, getters, setters, and method to retrieve chat history" />
+    <MESSAGE value="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add CustomerService methods and enhance Customer and PurchaseHistory models&#10;&#10;- Implement CRUD operations in CustomerService: addCustomer, removeCustomer, listCustomers, updateCustomer, getCustomerById&#10;- Add method to retrieve purchase history for a customer in CustomerService&#10;- Enhance Customer model to include purchase history&#10;- Create PurchaseHistory model with fields: productName, quantity, saleDate, totalPrice" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

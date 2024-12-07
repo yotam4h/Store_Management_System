@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,5 +124,37 @@ public class CustomerService
             System.out.println("Error fetching customer: " + e.getMessage());
         }
         return null;
+    }
+
+    public List<PurchaseHistory> getPurchaseHistory(int customerId) {
+        String query = "SELECT p.name, s.quantity, s.sale_date, (s.quantity * p.price) AS total_price " +
+                "FROM Sales s " +
+                "JOIN Products p ON s.product_id = p.id " +
+                "WHERE s.customer_id = ? " +
+                "ORDER BY s.sale_date DESC"; // Orders by most recent purchases
+
+        List<PurchaseHistory> purchaseHistoryList = new ArrayList<>();
+
+        try {
+            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+            PreparedStatement stmt = dbConnection.prepareStatement(query);
+
+            stmt.setInt(1, customerId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String productName = rs.getString("name");
+                int quantity = rs.getInt("quantity");
+                Timestamp saleDate = rs.getTimestamp("sale_date");
+                double totalPrice = rs.getDouble("total_price");
+
+                // Creating a PurchaseHistory object to hold the purchase data
+                purchaseHistoryList.add(new PurchaseHistory(productName, quantity, saleDate, totalPrice));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving purchase history: " + e.getMessage());
+        }
+
+        return purchaseHistoryList;
     }
 }
