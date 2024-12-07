@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Merge remote-tracking branch 'origin/main'">
-      <change afterPath="$PROJECT_DIR$/src/com/storemanagement/auth/UserService.java" afterDir="false" />
+    <list default="true" id="b5a28ba9-eea2-402f-9cee-239289fc5705" name="Changes" comment="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/admin/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/admin/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/auth/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/auth/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/auth/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/branch/BranchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/branch/BranchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/customer/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/storemanagement/customer/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/storemanagement/customer/CustomerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +204,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733579680931</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation">
+      <option name="closed" value="true" />
+      <created>1733581898471</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733581898471</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation">
+      <option name="closed" value="true" />
+      <created>1733581920815</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733581920815</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,7 +255,8 @@
     <MESSAGE value="sql class files" />
     <MESSAGE value="Add AdminService and LogEntry classes, and implement basic CRUD operations&#10;&#10;- Implement AdminService with methods to add, remove, list, and update employees and branches&#10;- Create LogEntry class to represent log entries with logId, timestamp, operationType, and details&#10;- Add basic structure for CustomerService and BranchService classes&#10;- Ensure database connection handling in AdminService methods" />
     <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement UserService and enhance AdminService with CRUD operations&#10;&#10;- Add CRUD operations in UserService: addUser, updateUser, removeUser, getUserById, listUsers&#10;- Enhance AdminService with methods to update and fetch employees by ID&#10;- Create User model class with constructors, getters, and setters&#10;- Add placeholder methods in AuthenticationService for login, logout, session validation, and token generation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
